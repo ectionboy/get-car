@@ -1,12 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./Home/Home";
-import Catalog from "./Catalog/Catalog";
 import Layout from "./Layout/Layout";
-import Favorites from "./Favorites/Favorites";
 import NotFound from "./NotFound/NotFound";
+import { Suspense, lazy } from "react";
+
+const Catalog = lazy(() => import("./Catalog/Catalog"));
+const Favorites = lazy(() => import("./Favorites/Favorites"));
+
 
 export const App = () => {
   return (
+    <Suspense fallback={"Loading....."}>
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home />} />
@@ -15,5 +19,6 @@ export const App = () => {
         </Route>
         <Route path="*" element={<NotFound />} />      
       </Routes>
+    </Suspense>
   );
 };
