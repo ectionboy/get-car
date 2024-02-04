@@ -28,11 +28,11 @@ interact with the system through web UI (see [Usage](#usage)):
 
 1. Clone the repository to your local machine:
    ```
-   git clone https://github.com/OleksandrTsurkan/Car-Rental-Project.git
+   git clone https://github.com/ectionboy/get-car.git
    ```
 2. Change your current directory to the project folder:
    ```
-   cd Car-Rental-Project
+   cd get-car
    ```
 3. Install the project dependencies:
    ```
