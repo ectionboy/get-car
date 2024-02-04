@@ -25,7 +25,6 @@ const CardList = () => {
     dispatch(loadMoreCars(page + 1));
     setPage(page + 1);
   };
-  console.log(visibleCars)
   return (
     <CardListStyled>
       {visibleCars.map(advertisement => (

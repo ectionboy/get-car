@@ -11,7 +11,6 @@ import {
 
 const Favorites = () => {
   const favorites = useSelector(getFavorites);
-  console.log(favorites);
   return (
     <SectionStyled>
       <ContainerStyled>
