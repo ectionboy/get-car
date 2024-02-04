@@ -50,9 +50,9 @@ interact with the system through web UI (see [Usage](#usage)):
 Your Rental Car App should now be running and accessible at
 `http://localhost:3000/get-car`
 
-![Main page](![image](https://github.com/ectionboy/get-car/assets/125730248/e82676a9-33bf-4630-9a80-c9eab16a40d4)
-)
-![Page for rent](![image](https://github.com/ectionboy/get-car/assets/125730248/33ad2950-728b-44db-b0f8-20fac2620a2c)
-)
-![Information about the car](![image](https://github.com/ectionboy/get-car/assets/125730248/b850f1dd-6cd4-4392-a829-b788ad876649)
-)
+![Main page](img-1.png)
+
+![Page for rent](img-2.png)
+
+![Information about the car](img-3.png)
+
