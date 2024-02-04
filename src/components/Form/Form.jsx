@@ -1,4 +1,4 @@
-import { Box, FormControl, InputBase, InputLabel, MenuItem, Select, styled,  } from '@mui/material'
+import { Box, Button, FormControl, InputBase, InputLabel, MenuItem, Select, TextField, styled,  } from '@mui/material'
 import React, { useState } from 'react'
 import { nanoid } from 'nanoid'
 import makes from '../../data/makes.json';
@@ -54,7 +54,7 @@ console.log(selectedPrice)
 
   return (
     <>
-    <Box sx={{ minWidth: 320 }}>
+    <Box sx={{ minWidth: 320 }} component="form">
     <FormControl sx={{ m: 1 }} variant="standard">
         <InputLabel id="models-select-label">Car brand</InputLabel>
         <Select
@@ -117,6 +117,28 @@ console.log(selectedPrice)
         </Select>
           
       </FormControl>
+      <FormControl sx={{ m: 1 }} variant="standard">
+
+
+      <TextField
+      
+          id="mileage-input-from"
+          label="Сar mileage / km"
+          type="number"
+        />
+        </FormControl>
+        <FormControl sx={{ m: 1 }} variant="standard">
+
+
+<TextField
+
+    id="mileage-input-to"
+    label="Сar mileage / km"
+    type="number"
+  />
+  </FormControl>
+        <Button variant="contained" type="submit">Search</Button>
+
   </Box>
   </>)
 }
