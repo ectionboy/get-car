@@ -1,6 +1,6 @@
-# Car rental
+# Get car
 
-This is React the single user Car Rental web application
+This is React the single user get car web application
 
 The first opening may be long, because free mockapi service is used for backend
 deployment.
@@ -13,7 +13,7 @@ deployment.
 
 ## <a id="features">Features</a>
 
-The Car Rental App provides a set of functions that allow single user to
+The get car App provides a set of functions that allow single user to
 interact with the system through web UI (see [Usage](#usage)):
 
 - Get a catalogue of cars for rent
@@ -47,7 +47,7 @@ interact with the system through web UI (see [Usage](#usage)):
    yarn start
    ```
 
-Your Rental Car App should now be running and accessible at
+Your get car App should now be running and accessible at
 `http://localhost:3000/get-car`
 
 ![Main page](img-1.png)
