@@ -1,41 +1,46 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { carsInitialState } from './initialState';
 import { fetchCars } from './operations';
-import { getCars } from './helpers';
-
-const STATUS = {
-  PENDING: 'pending',
-  FULFILLED: 'fulfilled',
-  REJECTED: 'rejected',
-};
-const arrThunk = [fetchCars];
-const arrTypeThunk = type => arrThunk.map(el => el[type]);
 
 const handlePending = state => {
-    state.isLoading = true;
-  };
-  const handleFulfilled = state => {
-    state.isLoading = false;
-    state.error = null;
-  };
-  
-  const handleRejected = (state, { error }) => {
-    state.isLoading = false;
-    state.error = error.message;
-  };
+  state.isLoading = true;
+};
 
-  const carsSlice = createSlice({
+const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+};
+
+export const loadMoreCars = createAsyncThunk(
+  'cars/loadMore',
+  async (page, { dispatch }) => {
+    try {
+      const response = await fetchCars(page);
+
+      dispatch(carsSlice.actions.addCars(response));
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+ const carsSlice = createSlice({
     name: 'cars',
     initialState: carsInitialState,
     extraReducers: builder => {
-      const { PENDING, FULFILLED, REJECTED } = STATUS;
       builder
-        .addCase(fetchCars.fulfilled, getCars)
-        .addMatcher(isAnyOf(...arrTypeThunk(PENDING)), handlePending)
-        .addMatcher(isAnyOf(...arrTypeThunk(FULFILLED)), handleFulfilled)
-        .addMatcher(isAnyOf(...arrTypeThunk(REJECTED)), handleRejected);
+      .addCase(fetchCars.pending, handlePending)
+      .addCase(fetchCars.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = payload;
+      })
+      .addCase(fetchCars.rejected, handleRejected);
     },
   });
   
+  export const { addCarsb } = carsSlice.actions;
   export const carsReducer = carsSlice.reducer;
 

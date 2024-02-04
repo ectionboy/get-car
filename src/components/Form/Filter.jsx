@@ -5,13 +5,20 @@ import { useDispatch } from 'react-redux';
 import { setFilter } from '../../redux/filter/slice';
 import makes from '../../data/makes';
 import prices from '../../data/prices';
-import { FormEl, Input, Label, Select, SelectPrice } from './Form.styled';
+import {
+  ButtonStyled,
+  Form,
+  Input,
+  Label,
+  Select,
+  SelectPrice,
+} from './Filter.styled';
 import { nanoid } from 'nanoid';
 
-const Form = () => {
+const Filter = () => {
   const dispatch = useDispatch();
-  const adverts = useSelector(getCars);
-  const [filteredAdverts, setFilteredAdverts] = useState([]);
+  const cars = useSelector(getCars);
+  const [filteredCars, setFilteredCars] = useState([]);
   const [selectedMake, setSelectedMake] = useState('Enter the text');
   const [selectedPrice, setSelectedPrice] = useState('To $');
 
@@ -25,12 +32,12 @@ const Form = () => {
 
   const handleOnSubmit = event => {
     event.preventDefault();
-    setFilteredAdverts(adverts.filter(advert => advert.make === selectedMake));
-    dispatch(setFilter(filteredAdverts));
+    setFilteredCars(cars.filter(cars => cars.make === selectedMake));
+    dispatch(setFilter(filteredCars));
   };
 
   return (
-    <FormEl onClick={handleOnSubmit}>
+    <Form onClick={handleOnSubmit}>
       <Label>
         Car brand
         <Select
@@ -71,9 +78,9 @@ const Form = () => {
         <Input placeholder="To" />
       </Label>
       <Label></Label>
-      <button type="submit">Search</button>
-    </FormEl>
+      <ButtonStyled type="submit">Search</ButtonStyled>
+    </Form>
   );
 };
 
-export default Form;
+export default Filter;
