@@ -2,6 +2,7 @@ import { Box, FormControl, InputBase, InputLabel, MenuItem, Select, styled,  } f
 import React, { useState } from 'react'
 import { nanoid } from 'nanoid'
 import makes from '../../data/makes.json';
+import prices from '../../data/prices.json';
 
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -38,13 +39,18 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
 const Form = () => {
     const [selectedMake, setSelectedMake] = useState('Enter the text');
+    const [selectedPrice, setSelectedPrice] = useState('To $');
 
 console.log(selectedMake)
+console.log(selectedPrice)
+
 
     const handleMakeSelectChange = event => {
         setSelectedMake(event.target.value);
       };
-    
+      const handlePriceSelectChange = event => {
+        setSelectedPrice(event.target.value);
+      };
 
   return (
     <>
@@ -75,7 +81,41 @@ console.log(selectedMake)
             </MenuItem>
           ))}
         </Select>
-        
+        </FormControl>
+
+
+
+
+
+        <FormControl sx={{ m: 1 }} variant="standard">
+
+
+        <InputLabel id="prices-select-label">Price/ 1 hour</InputLabel>
+        <Select
+        sx={{ minWidth: 320 }}
+          labelId="prices-select-label"
+          id="prices-select"
+          value={selectedPrice}
+          onChange={handlePriceSelectChange}
+          input={<BootstrapInput />}
+          renderValue={(selected) => {
+            if (selected === 'Enter the text') {
+              return <em>To $</em>;
+            }
+            return selected;
+
+          }}
+        > 
+  <MenuItem disabled value="">
+            <em>To $</em>
+          </MenuItem>
+        {prices.map(make => (
+            <MenuItem key={nanoid()} value={make}>
+              {make}
+            </MenuItem>
+          ))}
+        </Select>
+          
       </FormControl>
   </Box>
   </>)
